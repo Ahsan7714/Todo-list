@@ -4,33 +4,27 @@ import "./index.css"
 
 
 const  Jokes= ()=> {
-  const[item,setItem]=useState("");
-  const[add,setadd]=useState([]);
-  const addItem=(event)=>{
-    setItem(event.target.value);
-  }  
-  const  listOfItems =()=>{
-
-  }
-  return(<>
-  <div className="main-div">
-    <div className="center-div">
+  const [data, setData] = useState("");
+  const [item, setItem] = useState([]);
+  const handelChange = (event) => {
+    setData(event.target.value);
+  };
+  const addItem = () => {
+    setItem([...item, data]);
+  };
+  return (
+    <>
+      <h1>To Do List</h1>
       <br></br>
-      <h1>ToDo List</h1>
-      <br></br>
-      <input type="text" placeholder='Add items' onChange={addItem}/>
-      <button>+</button>
-      <br></br>
-      <ol>
-        <li>{item}</li>
-        {}
-      </ol>
-    </div>
-
-  </div>
-  </>
-
-  )
+      <input type="text" onChange={handelChange} />
+      <button onClick={addItem}>+</button>
+      <ul>
+        {item.map((list) => {
+          return <li>{list}</li>;
+        })}
+      </ul>
+    </>
+  );
 }
 
 export default Jokes
